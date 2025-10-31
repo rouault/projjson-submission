@@ -59,9 +59,7 @@ PROJJSON was first implemented in version 6.2 of the https://proj.org[PROJ] open
 
 The rationale for the development of PROJJSON is that the use of WKT strings in JSON documents or JSON-based APIs is awkward, as the parsing of WKT strings require non-trivial logic which strong domain knowledge of CRS modeling. Having a dedicated JSON encoding for CRS makes it easier for consumers to inspect properties of a CRS, like its nature, name, units, identifiers, etc. much easier by simple natification in the JSON object hierarchy.
 
-PROJJSON comes with a JSON schema [https://proj.org/schemas/v0.4/projjson.schema.json] which helps writers of PROJJSON to validate the well-formedness of their output, and consumers to have the grammar of PROJJSON content in a well-accepted format.
-
-It has been used as one of the potential encodings for CRS in the https://gdal.org/drivers/raster/zarr.html#srs-encoding[GDAL Zarr driver], developed as part of http://docs.opengeospatial.org/per/21-032.html#toc23[OGC Testbed 17]
+PROJJSON comes with a JSON schema [https://proj.org/schemas/v0.7/projjson.schema.json] which helps writers of PROJJSON to validate the well-formedness of their output, and consumers to have the grammar of PROJJSON content in a well-accepted format.
 
 == Relationship to other OGC Standards
 
@@ -75,8 +73,6 @@ It is used as the CRS encoding for the https://github.com/opengeospatial/geoparq
 
 PROJJSON is used in the https://docs.opengeospatial.org/DRAFTS/17-083r4.html#tms-json-encoding[OGC Two Dimensional Tile Matrix Set and Tile Set Metadata] for its JSON encoding.
 
-It is used in the https://github.com/stac-extensions/projection#item-properties-or-asset-fields[STAC Projection Extension Specification]
-
 It is also considered for use in the CoverageJSON standard (https://github.com/opengeospatial/CoverageJSON/issues/26) or potential future work item for OGC API features (https://github.com/opengeospatial/ogcapi-features/issues/451#issuecomment-719403423)
 
 == Alignment with OGC Standards Baseline
@@ -85,7 +81,7 @@ It is also considered for use in the CoverageJSON standard (https://github.com/o
 Describe where this proposed standard fits with respect to the existing OGC standards baseline and standards in development in the OGC and whether this proposed standard may compete with or enhance an existing OGC standard.
 ////
 
-Covered by previous paragraph.
+PROJJSON has been developped and adopted several years before the ongoing work by the OGC CRS SWG on a OGC CRS JSON standard at https://github.com/opengeospatial/CRS-JSON-Encoding for which there is still no public draft. Given the lack of such draft more than one year and a half after the work has started, it is difficult to comment on the differences between the two approaches.
 
 == Evidence of implementation
 
@@ -100,7 +96,7 @@ Optionally, provide a narrative description of the extent of implementation of t
 
 *Implementation name:* PROJ library
 
-*Date of most recent version:* PROJ 9.0.0, March 1st 2022
+*Date of most recent version:* PROJ 9.7.0, October 1st 2025s
 
 *Implementation description:*
 
@@ -123,7 +119,7 @@ It is the initial, and probably what can be considered the reference implementat
 
 *Implementation name:* pyproj library
 
-*Date of most recent version:* pyproj 3.3.1, April 22nd 2022
+*Date of most recent version:* pyproj 3.7.2, August 14th 2025
 
 *Implementation description:*
 
@@ -140,6 +136,50 @@ Supports PROJJSON since its version 2.5.0 (February 2020)
 
 *If not,* what portions of the proposed Community standard are implemented?
 
+=== PROJJSON to WKT conversion script
+
+*Implementation name:* projjson_to_wkt
+
+*Date of most recent version:* projjson_to_wkt 1.0.0, October 31th 2025
+
+Converts a PROJJSON CRS string into a WKT CRS string (WKT1 or WKT2:2019 variants supported).
+
+A JavaScript port of it exists at https://github.com/m-mohr/projjson_to_wkt
+
+*Implementation URL:* https://github.com/rouault/projjson_to_wkt
+
+*Is implementation complete?*
+
+* [x] Yes
+* [ ] No
+
+*If not,* what portions of the proposed Community standard are implemented?
+
+=== Usage by other standards, specifications or online resources
+
+==== STAC Proj extension
+
+PROJJSON is one of the CRS encoding supported by the https://github.com/stac-extensions/projection[SpatioTemporal Asset Catalog (STAC) Projection Extension].
+
+==== GeoParquet format
+
+PROJJSON is the only CRS encoding supported by the https://geoparquet.org/releases/v1.1.0/[GeoParquet 1.1.0 format specification]
+
+==== Parquet GEOMETRY/GEOGRAPHY column type
+
+PROJJSON is one the CRS encoding supported by the https://github.com/apache/parquet-format/blob/master/Geospatial.md#crs-customization[Parquet GEOMETRY/GEOGRAPHY column type]
+
+==== GDAL Zarr driver
+
+PROJJSON is supported in read and write as one of the potential encodings for CRS in the https://gdal.org/drivers/raster/zarr.html#srs-encoding[GDAL Zarr driver], developed as part of http://docs.opengeospatial.org/per/21-032.html#toc23[OGC Testbed 17]
+
+==== ESA Earth Observation Platform (EOPF) Zarr Visualization product
+
+PROJJSON is  one the CRS encoding supported by the https://github.com/zarr-experimental/geo-proj["geo-proj" Zarr extension].
+
+==== spatialreference.org web site
+
+https://spatialReference.org[spatiareference.org] is a comprehensive online resource dedicated to providing detailed information and reference materials on spatial coordinate reference systems. It supports PROJJSON as one of the formats.
 
 == Public availability
 
@@ -158,8 +198,6 @@ The PROJJSON specification and JSON schema are available under the MIT license.
 List the supporting organizations. There must be at least three OGC organizations of which at least one must be an OGC Voting Member.
 ////
 
-- Spatialys
-- Hobu, Inc.
 - Planet Labs PBC
 - CARTO
 
