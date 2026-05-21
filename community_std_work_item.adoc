@@ -198,8 +198,7 @@ The PROJJSON specification and JSON schema are available under the MIT license.
 List the supporting organizations. There must be at least three OGC organizations of which at least one must be an OGC Voting Member.
 ////
 
-- Planet Labs PBC
-- CARTO
+- OSGeo
 
 == Intellectual Property Rights
 
